@@ -1,5 +1,5 @@
 from flask import *
-import config as c
+import config
 import uuid
 import os
 from functools import wraps

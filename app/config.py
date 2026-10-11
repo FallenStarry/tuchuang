@@ -2,11 +2,11 @@ import json
 
 p = "../config.json"
 
-def load():
+def load1():
     with open(p) as cfg :
-        return load(cfg)
+        return json.load(cfg)
 
-cfg = load()
+cfg = load1()
 
 host = cfg["host"]
 port = cfg["port"]
