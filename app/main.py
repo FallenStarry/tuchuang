@@ -22,10 +22,10 @@ def login():
             session["logged_in"] = True   # 写入 session，浏览器 cookie 里存一个签名标记
             return redirect(url_for("index"))
         flash("账号或密码错误")
-    return render_template("login.html")  # GET 请求或登录失败，显示登录页面
+    return render_template("./web/login.html")  # GET 请求或登录失败，显示登录页面
 
 @app.route("/", methods=["GET", "POST"])
-@login_required                    # 必须登录才能访问
+@login_check                    # 必须登录才能访问
 def index():
     if request.method == "POST":
         file = request.files.get("file")   # 从表单中取上传的文件对象
@@ -42,7 +42,7 @@ def index():
         [f for f in os.listdir(config.up) if os.path.isfile(config.up + "/" + f)],
         reverse=True,                # 倒序，新文件排前面
     )
-    return render_template("index.html", files=files)
+    return render_template("./web/index.html", files=files)
 
 if __name__ == "__main__":
     app.run(host=config.host, port=config.port, debug=True)  # 启动开发服务器，debug=True 开启自动重载

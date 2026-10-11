@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>文件上传</title></head>
+<body>
+  <h1>上传文件</h1>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul>{% for msg in messages %}<li>{{ msg }}</li>{% endfor %}</ul>
+    {% endif %}
+  {% endwith %}
+
+  <form method="POST" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <button type="submit">上传</button>
+  </form>
+
+  <h2>已上传的文件</h2>
+  <ul>
+    {% for f in files %}
+      <li>{{ f }}</li>
+    {% else %}
+      <li>暂无文件</li>
+    {% endfor %}
+  </ul>
+</body>
+</html>
