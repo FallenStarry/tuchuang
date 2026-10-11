@@ -4,7 +4,7 @@ import uuid
 import os
 from functools import wraps
 
-app = Flask(__name__,template_folder='web')
+app = Flask(__name__,template_folder='../web')
 app.secret_key = "123456"
 
 def login_check(f):
