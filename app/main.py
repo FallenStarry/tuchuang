@@ -45,7 +45,7 @@ def index():
 
     files = [
         {"name": f, "url": f"{config.url}/pics/{f}"}
-        for f in files
+        for f in files1
     ]
 
     return render_template("index.html", files=files)
