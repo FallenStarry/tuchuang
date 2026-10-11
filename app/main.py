@@ -38,15 +38,10 @@ def index():
             flash("上传成功：" + new_name)
         return redirect(url_for("index"))  # 上传后重定向，防止刷新重复提交
     
-    files1 = sorted(
-        [f for f in os.listdir(config.up) if os.path.isfile(config.up + "/" + f)],
+    files = sorted(
+        [f"{config.url}/pics/{f}" for f in os.listdir(config.up) if os.path.isfile(config.up + "/" + f)],
         reverse=True,                # 倒序，新文件排前面
     )
-
-    files = [
-        {"name": f, "url": f"{config.url}/pics/{f}"}
-        for f in files1
-    ]
 
     return render_template("index.html", files=files)
 
