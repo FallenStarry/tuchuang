@@ -34,7 +34,7 @@ def index():
         else:
             ext = file.filename.rsplit(".", 1)[1].lower()
             new_name = uuid.uuid4().hex + "." + ext        # 32位随机文件名
-            file.save(config.UPLOAD_DIR + "/" + new_name)  # 保存到 uploads 目录
+            file.save(config.up + "/" + new_name)  # 保存到 uploads 目录
             flash("上传成功：" + new_name)
         return redirect(url_for("index"))  # 上传后重定向，防止刷新重复提交
     
