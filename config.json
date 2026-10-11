@@ -2,5 +2,5 @@
     "host": "0.0.0.0",
     "port": 1012,
     "password": " ",
-    "upload_dir": "pics"
+    "upload_dir": "../pics"
 }
