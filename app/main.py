@@ -4,7 +4,7 @@ import uuid
 import os
 from functools import wraps
 
-app = Flask(__name__)
+app = Flask(__name__,template_folder='web')
 app.secret_key = "123456"
 
 def login_check(f):
@@ -22,7 +22,7 @@ def login():
             session["logged_in"] = True   # 写入 session，浏览器 cookie 里存一个签名标记
             return redirect(url_for("index"))
         flash("账号或密码错误")
-    return render_template("./web/login.html")  # GET 请求或登录失败，显示登录页面
+    return render_template("login.html")  # GET 请求或登录失败，显示登录页面
 
 @app.route("/", methods=["GET", "POST"])
 @login_check                    # 必须登录才能访问
@@ -42,7 +42,7 @@ def index():
         [f for f in os.listdir(config.up) if os.path.isfile(config.up + "/" + f)],
         reverse=True,                # 倒序，新文件排前面
     )
-    return render_template("./web/index.html", files=files)
+    return render_template("index.html", files=files)
 
 if __name__ == "__main__":
     app.run(host=config.host, port=config.port, debug=True)  # 启动开发服务器，debug=True 开启自动重载
